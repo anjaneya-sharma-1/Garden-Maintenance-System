@@ -57,8 +57,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Monstera Deliciosa Plant Care 101",
-        url: "https://www.youtube.com/watch?v=Mw5_3PG2qHc",
-        thumbnailUrl: "https://img.youtube.com/vi/Mw5_3PG2qHc/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=k3Fwy5_piYw",
+        thumbnailUrl: "https://img.youtube.com/vi/k3Fwy5_piYw/hqdefault.jpg",
       },
     ],
   },
@@ -86,8 +86,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Complete Snake Plant Care Guide",
-        url: "https://www.youtube.com/watch?v=uw9tOKL1RXQ",
-        thumbnailUrl: "https://img.youtube.com/vi/uw9tOKL1RXQ/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=9w-7RoH_uic",
+        thumbnailUrl: "https://img.youtube.com/vi/9w-7RoH_uic/hqdefault.jpg",
       },
     ],
   },
@@ -115,8 +115,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "How to Grow Tomatoes from Seed to Harvest",
-        url: "https://www.youtube.com/watch?v=fpN_FfsHm-w",
-        thumbnailUrl: "https://img.youtube.com/vi/fpN_FfsHm-w/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=8BXIRjZncBw",
+        thumbnailUrl: "https://img.youtube.com/vi/8BXIRjZncBw/hqdefault.jpg",
       },
     ],
   },
@@ -144,8 +144,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Grow Endless Basil Indoors",
-        url: "https://www.youtube.com/watch?v=jq19_4B-kLs",
-        thumbnailUrl: "https://img.youtube.com/vi/jq19_4B-kLs/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=v4TIjfHZGVI",
+        thumbnailUrl: "https://img.youtube.com/vi/v4TIjfHZGVI/hqdefault.jpg",
       },
     ],
   },
@@ -173,8 +173,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "How to Grow Lavender",
-        url: "https://www.youtube.com/watch?v=4kE12sjQDlk",
-        thumbnailUrl: "https://img.youtube.com/vi/4kE12sjQDlk/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=LR1K8T79OT8",
+        thumbnailUrl: "https://img.youtube.com/vi/LR1K8T79OT8/hqdefault.jpg",
       },
     ],
   },
@@ -202,8 +202,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Fiddle Leaf Fig Care Guide",
-        url: "https://www.youtube.com/watch?v=zJ4wWYRJQ0o",
-        thumbnailUrl: "https://img.youtube.com/vi/zJ4wWYRJQ0o/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=MQJwPG3voNo",
+        thumbnailUrl: "https://img.youtube.com/vi/MQJwPG3voNo/hqdefault.jpg",
       },
     ],
   },
@@ -231,8 +231,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "How to Grow Strawberries",
-        url: "https://www.youtube.com/watch?v=NpWKdf6Z6PA",
-        thumbnailUrl: "https://img.youtube.com/vi/NpWKdf6Z6PA/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=sRUE1VUo0CA",
+        thumbnailUrl: "https://img.youtube.com/vi/sRUE1VUo0CA/hqdefault.jpg",
       },
     ],
   },
@@ -260,8 +260,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "How to Care for Echeveria Succulents",
-        url: "https://www.youtube.com/watch?v=8qQvJzYsKfI",
-        thumbnailUrl: "https://img.youtube.com/vi/8qQvJzYsKfI/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=itMCheYsYbM",
+        thumbnailUrl: "https://img.youtube.com/vi/itMCheYsYbM/hqdefault.jpg",
       },
     ],
   },
@@ -289,8 +289,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Growing Rosemary at Home",
-        url: "https://www.youtube.com/watch?v=Wlr1Bxa9pU8",
-        thumbnailUrl: "https://img.youtube.com/vi/Wlr1Bxa9pU8/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=stw9KEpSNEg",
+        thumbnailUrl: "https://img.youtube.com/vi/stw9KEpSNEg/hqdefault.jpg",
       },
     ],
   },
@@ -318,8 +318,8 @@ const CATALOG: CatalogSeed[] = [
     videos: [
       {
         title: "Pothos Plant Care",
-        url: "https://www.youtube.com/watch?v=KILXp4kt0WI",
-        thumbnailUrl: "https://img.youtube.com/vi/KILXp4kt0WI/hqdefault.jpg",
+        url: "https://www.youtube.com/watch?v=OComSHxFHxg",
+        thumbnailUrl: "https://img.youtube.com/vi/OComSHxFHxg/hqdefault.jpg",
       },
     ],
   },

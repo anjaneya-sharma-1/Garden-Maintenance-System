@@ -250,7 +250,7 @@ async function createDefaultStore(): Promise<Store> {
       summary:
         "Iconic split-leaf tropical climber that thrives indoors with bright, filtered light.",
       description:
-        "Monstera deliciosa is a classic tropical climber from Central American rainforests. It loves a warm, humid corner near a bright window and a moss pole to climb.",
+        "Monstera deliciosa is a classic tropical climber from Central American rainforests. Its dramatic fenestrated leaves develop with maturity. It loves a warm, humid corner near a bright window and a moss pole to climb. Water when the top 2 cm of soil are dry; let it rest a touch in winter.",
       sunlight: "Bright, indirect light",
       waterFrequencyDays: 7,
       idealTemperatureC: "18-27",
@@ -261,12 +261,17 @@ async function createDefaultStore(): Promise<Store> {
           url: "https://www.thespruce.com/grow-monstera-deliciosa-1902789",
           source: "The Spruce",
         },
+        {
+          title: "Monstera Care Guide",
+          url: "https://www.gardenersworld.com/how-to/grow-plants/how-to-grow-monstera-deliciosa/",
+          source: "Gardeners' World",
+        },
       ],
       videos: [
         {
           title: "Monstera Deliciosa Plant Care 101",
-          url: "https://www.youtube.com/watch?v=Mw5_3PG2qHc",
-          thumbnailUrl: "https://img.youtube.com/vi/Mw5_3PG2qHc/hqdefault.jpg",
+          url: "https://www.youtube.com/watch?v=k3Fwy5_piYw",
+          thumbnailUrl: "https://img.youtube.com/vi/k3Fwy5_piYw/hqdefault.jpg",
         },
       ],
     },
@@ -280,7 +285,7 @@ async function createDefaultStore(): Promise<Store> {
       summary:
         "Architectural, almost indestructible houseplant that purifies the air while you sleep.",
       description:
-        "Snake plants tolerate low light, dry air, and inconsistent watering. Let the soil dry out completely between waterings.",
+        "Snake plants tolerate low light, dry air, and inconsistent watering. Let the soil dry out completely between waterings. Repot every few years in a well-draining mix. Avoid cold drafts below 10 C.",
       sunlight: "Low to bright indirect light",
       waterFrequencyDays: 14,
       idealTemperatureC: "15-27",
@@ -295,8 +300,8 @@ async function createDefaultStore(): Promise<Store> {
       videos: [
         {
           title: "Complete Snake Plant Care Guide",
-          url: "https://www.youtube.com/watch?v=uw9tOKL1RXQ",
-          thumbnailUrl: "https://img.youtube.com/vi/uw9tOKL1RXQ/hqdefault.jpg",
+          url: "https://www.youtube.com/watch?v=9w-7RoH_uic",
+          thumbnailUrl: "https://img.youtube.com/vi/9w-7RoH_uic/hqdefault.jpg",
         },
       ],
     },
@@ -310,7 +315,7 @@ async function createDefaultStore(): Promise<Store> {
       summary:
         "Sun-loving vegetable that rewards steady care with armfuls of summer fruit.",
       description:
-        "Tomatoes need at least 6 hours of direct sun, evenly moist soil, and rich feeding. Stake or cage plants early and mulch to keep soil temperature even.",
+        "Tomatoes need at least 6 hours of direct sun, evenly moist soil, and rich feeding. Stake or cage plants early, mulch to keep soil temperature even, and pinch suckers on indeterminate varieties. Watch for blight after wet weather.",
       sunlight: "Full sun (6+ hours)",
       waterFrequencyDays: 2,
       idealTemperatureC: "18-29",
@@ -325,8 +330,218 @@ async function createDefaultStore(): Promise<Store> {
       videos: [
         {
           title: "How to Grow Tomatoes from Seed to Harvest",
-          url: "https://www.youtube.com/watch?v=fpN_FfsHm-w",
-          thumbnailUrl: "https://img.youtube.com/vi/fpN_FfsHm-w/hqdefault.jpg",
+          url: "https://www.youtube.com/watch?v=8BXIRjZncBw",
+          thumbnailUrl: "https://img.youtube.com/vi/8BXIRjZncBw/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 4,
+      commonName: "Sweet Basil",
+      scientificName: "Ocimum basilicum",
+      category: "Herb",
+      difficulty: "easy",
+      imageUrl: "/plants/basil.png",
+      summary:
+        "Aromatic culinary herb that loves heat and a bright, sunny windowsill.",
+      description:
+        "Pinch off flower buds to keep leaves tender, and harvest from the top down to encourage bushy growth. Basil hates cold; keep above 15 C. Water at the base in the morning to avoid leaf disease.",
+      sunlight: "Full sun",
+      waterFrequencyDays: 2,
+      idealTemperatureC: "18-30",
+      soilType: "Rich, well-draining potting mix",
+      articles: [
+        {
+          title: "How to Grow Basil",
+          url: "https://www.rhs.org.uk/herbs/basil/grow-your-own",
+          source: "RHS",
+        },
+      ],
+      videos: [
+        {
+          title: "Grow Endless Basil Indoors",
+          url: "https://www.youtube.com/watch?v=v4TIjfHZGVI",
+          thumbnailUrl: "https://img.youtube.com/vi/v4TIjfHZGVI/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 5,
+      commonName: "Lavender",
+      scientificName: "Lavandula angustifolia",
+      category: "Flower",
+      difficulty: "medium",
+      imageUrl: "/plants/lavender.png",
+      summary:
+        "Mediterranean perennial with calming fragrance, bee-friendly purple spikes.",
+      description:
+        "Lavender thrives on neglect: lean soil, sharp drainage, and full sun. Avoid wet feet at all costs. Prune lightly after flowering to keep plants compact for years.",
+      sunlight: "Full sun",
+      waterFrequencyDays: 7,
+      idealTemperatureC: "10-30",
+      soilType: "Sandy, alkaline, very well-draining",
+      articles: [
+        {
+          title: "Growing Lavender",
+          url: "https://www.gardenersworld.com/how-to/grow-plants/how-to-grow-lavender/",
+          source: "Gardeners' World",
+        },
+      ],
+      videos: [
+        {
+          title: "How to Grow Lavender",
+          url: "https://www.youtube.com/watch?v=LR1K8T79OT8",
+          thumbnailUrl: "https://img.youtube.com/vi/LR1K8T79OT8/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 6,
+      commonName: "Fiddle Leaf Fig",
+      scientificName: "Ficus lyrata",
+      category: "Houseplant",
+      difficulty: "hard",
+      imageUrl: "/plants/fiddle-leaf-fig.png",
+      summary:
+        "Statement tree with violin-shaped leaves - picky, but unforgettable.",
+      description:
+        "Place near a bright east or south window and do not move it. Water when the top 5 cm are dry; never let it sit in water. Wipe leaves monthly to keep them photosynthesizing happily.",
+      sunlight: "Bright, indirect light",
+      waterFrequencyDays: 9,
+      idealTemperatureC: "18-26",
+      soilType: "Well-draining indoor potting mix",
+      articles: [
+        {
+          title: "Fiddle Leaf Fig Care",
+          url: "https://www.fiddleleaffigplant.com/blogs/care",
+          source: "Fiddle Leaf Fig Resource",
+        },
+      ],
+      videos: [
+        {
+          title: "Fiddle Leaf Fig Care Guide",
+          url: "https://www.youtube.com/watch?v=MQJwPG3voNo",
+          thumbnailUrl: "https://img.youtube.com/vi/MQJwPG3voNo/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 7,
+      commonName: "Strawberry",
+      scientificName: "Fragaria x ananassa",
+      category: "Fruit",
+      difficulty: "medium",
+      imageUrl: "/plants/strawberry.png",
+      summary:
+        "Sweet, low-growing perennial - equally at home in beds, pots, and balcony rails.",
+      description:
+        "Plant in rich soil with plenty of compost. Mulch with straw to keep berries clean and slugs at bay. Pinch off the first flowers in year one for stronger plants.",
+      sunlight: "Full sun (6+ hours)",
+      waterFrequencyDays: 2,
+      idealTemperatureC: "15-26",
+      soilType: "Rich, slightly acidic, well-draining",
+      articles: [
+        {
+          title: "Growing Strawberries",
+          url: "https://www.almanac.com/plant/strawberries",
+          source: "Old Farmer's Almanac",
+        },
+      ],
+      videos: [
+        {
+          title: "How to Grow Strawberries",
+          url: "https://www.youtube.com/watch?v=sRUE1VUo0CA",
+          thumbnailUrl: "https://img.youtube.com/vi/sRUE1VUo0CA/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 8,
+      commonName: "Echeveria",
+      scientificName: "Echeveria elegans",
+      category: "Succulent",
+      difficulty: "easy",
+      imageUrl: "/plants/succulent-echeveria.png",
+      summary:
+        "Sculptural rosette succulent in soft pastel hues - a tiny living jewel.",
+      description:
+        "Echeveria want sharp drainage and lots of light. Soak the soil thoroughly, then let it dry completely. Indoors, give the brightest window you have. Avoid wetting the rosette.",
+      sunlight: "Full to bright direct sun",
+      waterFrequencyDays: 14,
+      idealTemperatureC: "10-27",
+      soilType: "Cactus & succulent mix",
+      articles: [
+        {
+          title: "Echeveria Care Guide",
+          url: "https://succulentsbox.com/blogs/care-guide/echeveria",
+          source: "Succulents Box",
+        },
+      ],
+      videos: [
+        {
+          title: "How to Care for Echeveria Succulents",
+          url: "https://www.youtube.com/watch?v=itMCheYsYbM",
+          thumbnailUrl: "https://img.youtube.com/vi/itMCheYsYbM/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 9,
+      commonName: "Rosemary",
+      scientificName: "Salvia rosmarinus",
+      category: "Herb",
+      difficulty: "easy",
+      imageUrl: "/plants/rosemary.png",
+      summary:
+        "Woody Mediterranean herb - equal parts kitchen staple and pollinator magnet.",
+      description:
+        "Loves sun, lean soil, and a dry foot. In wet climates, grow in a clay pot you can move under cover in winter. Prune lightly through the year to keep it bushy.",
+      sunlight: "Full sun",
+      waterFrequencyDays: 7,
+      idealTemperatureC: "10-30",
+      soilType: "Sandy, well-draining",
+      articles: [
+        {
+          title: "How to Grow Rosemary",
+          url: "https://www.rhs.org.uk/herbs/rosemary/grow-your-own",
+          source: "RHS",
+        },
+      ],
+      videos: [
+        {
+          title: "Growing Rosemary at Home",
+          url: "https://www.youtube.com/watch?v=stw9KEpSNEg",
+          thumbnailUrl: "https://img.youtube.com/vi/stw9KEpSNEg/hqdefault.jpg",
+        },
+      ],
+    },
+    {
+      id: 10,
+      commonName: "Golden Pothos",
+      scientificName: "Epipremnum aureum",
+      category: "Houseplant",
+      difficulty: "easy",
+      imageUrl: "/plants/pothos.png",
+      summary:
+        "Trailing vine with heart-shaped leaves - forgiving, fast-growing, ever-green.",
+      description:
+        "Pothos tolerates a wide range of light, but variegation is best in bright, indirect conditions. Let the top 3 cm of soil dry between waterings. Pinch tips to keep it bushy or let it trail.",
+      sunlight: "Low to bright indirect light",
+      waterFrequencyDays: 8,
+      idealTemperatureC: "16-27",
+      soilType: "Well-draining indoor potting mix",
+      articles: [
+        {
+          title: "Pothos Care Guide",
+          url: "https://www.thesill.com/blogs/plants-101/how-to-care-for-pothos",
+          source: "The Sill",
+        },
+      ],
+      videos: [
+        {
+          title: "Pothos Plant Care",
+          url: "https://www.youtube.com/watch?v=OComSHxFHxg",
+          thumbnailUrl: "https://img.youtube.com/vi/OComSHxFHxg/hqdefault.jpg",
         },
       ],
     },

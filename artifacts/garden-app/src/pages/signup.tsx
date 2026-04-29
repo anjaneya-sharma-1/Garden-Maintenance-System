@@ -2,7 +2,8 @@ import { Link, useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useSignup } from "@workspace/api-client-react";
+import { useSignup, getGetCurrentUserQueryKey } from "@workspace/api-client-react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +28,7 @@ export default function Signup() {
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const signup = useSignup();
+  const queryClient = useQueryClient();
   
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -40,7 +42,8 @@ export default function Signup() {
 
   const onSubmit = async (values: z.infer<typeof signupSchema>) => {
     try {
-      await signup.mutateAsync({ data: values });
+      const response = await signup.mutateAsync({ data: values });
+      queryClient.setQueryData(getGetCurrentUserQueryKey(), { user: response.user });
       toast({
         title: "Account created!",
         description: "Welcome to your new garden.",
