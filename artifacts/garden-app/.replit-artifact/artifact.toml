@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Garden Maintenance System"
+version = "1.0.0"
+id = "artifacts/garden-app"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19526
+
+[services.development]
+run = "pnpm --filter @workspace/garden-app run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/garden-app", "run", "build" ]
+publicDir = "artifacts/garden-app/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19526"
+BASE_PATH = "/"

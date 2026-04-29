@@ -1,0 +1,103 @@
+Design and develop a full-stack web-based Garden Maintenance System (GMS) that helps users efficiently manage, monitor, and maintain their personal gardens through automation, data-driven insights, and an intuitive interface.
+
+The system should focus purely on software implementation (no hardware dependency), simulating real-time features where required.
+
+🎯 Core Objective
+
+Build a centralized platform that enables users to:
+
+Manage and track multiple plants
+Receive personalized plant care routines
+Monitor simulated soil conditions (pH, temperature, humidity)
+Set and manage automated reminders
+Access plant knowledge and tutorials
+
+This system should transform gardening from a manual, memory-based activity into a structured, intelligent, and user-friendly digital experience
+
+🧩 Key Features to Implement
+1. User Authentication & Profile
+Secure login/signup
+Store user data (email, region, plant list)
+Profile update functionality
+2. Plant Management Module
+Add, update, delete plants
+Maintain personal garden list
+Fetch plant details from database
+View added plants
+3. Plant Knowledge System
+Search for any plant ("Know Any Plant")
+Show:
+Basic info (species, name)
+Documents/articles
+Tutorial videos
+4. Care Routine Generator
+Generate plant care schedules based on:
+Plant type
+User region
+Include:
+Watering schedule
+Sunlight needs
+Soil requirements
+5. Reminder System
+Add watering reminders
+Schedule notifications (time/date based)
+Update/delete reminders
+6. Soil Monitoring (Simulated)
+Display real-time-like values:
+pH
+Temperature
+Humidity
+Use backend-generated or API-based mock data
+7. Watering Reports
+Track watering activity
+Maintain history logs
+Generate simple reports
+8. Admin Panel
+Manage users
+Oversee system data
+Control plant database
+🏗️ System Architecture
+
+Use a 3-layer architecture:
+
+Frontend (Presentation Layer):
+React (preferred) or HTML/CSS
+Backend (Application Layer):
+Python (Flask / Django / FastAPI)
+Database (Data Layer):
+MySQL / SQLite
+⚙️ Functional Requirements
+User authentication
+Plant CRUD operations
+Plant search functionality
+Reminder scheduling
+Care routine generation
+Soil data visualization
+Tutorial access
+🔒 Non-Functional Requirements
+Secure authentication (hashed passwords)
+Responsive UI
+Fast API responses
+Scalable database design
+Clean modular backend
+🧠 Design Expectations (Important)
+Follow your use case + class diagram structure
+Keep logic modular:
+User
+Plant
+Reminder
+SoilMonitor
+CareRoutine
+Avoid unnecessary complexity (no over-engineering like microservices or ML)
+💡 Constraints
+Software-only implementation (no IoT hardware required)
+Real-time monitoring can be simulated
+Focus on clean architecture + working features, not fancy extras
+🎯 Expected Outcome
+
+A working web application where:
+
+Users can manage their garden digitally
+System suggests what to do and when
+Reminders prevent neglect
+Users gain knowledge via integrated resources

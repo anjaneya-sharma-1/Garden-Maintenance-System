@@ -1,0 +1,1009 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Garden Maintenance System API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+  - name: auth
+  - name: profile
+  - name: plants
+  - name: garden
+  - name: knowledge
+  - name: care
+  - name: reminders
+  - name: soil
+  - name: watering
+  - name: dashboard
+  - name: admin
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /auth/signup:
+    post:
+      operationId: signup
+      tags: [auth]
+      summary: Create a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignupBody"
+      responses:
+        "200":
+          description: Created user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+
+  /auth/login:
+    post:
+      operationId: login
+      tags: [auth]
+      summary: Log in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginBody"
+      responses:
+        "200":
+          description: Auth response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+
+  /auth/logout:
+    post:
+      operationId: logout
+      tags: [auth]
+      summary: Log out
+      responses:
+        "200":
+          description: Logged out
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleOk"
+
+  /auth/me:
+    get:
+      operationId: getCurrentUser
+      tags: [auth]
+      summary: Current user
+      responses:
+        "200":
+          description: Current user (or null when unauthenticated)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrentUserResponse"
+
+  /profile:
+    patch:
+      operationId: updateProfile
+      tags: [profile]
+      summary: Update the current user's profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProfileBody"
+      responses:
+        "200":
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /plants/catalog:
+    get:
+      operationId: listCatalogPlants
+      tags: [plants]
+      summary: Browse the global plant catalog
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+      responses:
+        "200":
+          description: Catalog plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CatalogPlant"
+
+  /plants/catalog/{plantId}:
+    get:
+      operationId: getCatalogPlant
+      tags: [plants]
+      summary: Get a single catalog plant with full details
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Catalog plant detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogPlantDetail"
+
+  /knowledge/search:
+    get:
+      operationId: knowledgeSearch
+      tags: [knowledge]
+      summary: Know Any Plant — search the knowledge base
+      parameters:
+        - in: query
+          name: q
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Knowledge results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeResult"
+
+  /garden:
+    get:
+      operationId: listGarden
+      tags: [garden]
+      summary: List the current user's plants
+      responses:
+        "200":
+          description: Garden plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GardenPlant"
+    post:
+      operationId: addGardenPlant
+      tags: [garden]
+      summary: Add a plant to the user's garden
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddGardenPlantBody"
+      responses:
+        "200":
+          description: Created garden plant
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GardenPlant"
+
+  /garden/{plantId}:
+    get:
+      operationId: getGardenPlant
+      tags: [garden]
+      summary: Get a garden plant with care routine and recent activity
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Garden plant detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GardenPlantDetail"
+    patch:
+      operationId: updateGardenPlant
+      tags: [garden]
+      summary: Update a garden plant
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateGardenPlantBody"
+      responses:
+        "200":
+          description: Updated garden plant
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GardenPlant"
+    delete:
+      operationId: deleteGardenPlant
+      tags: [garden]
+      summary: Remove a plant from the garden
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleOk"
+
+  /care/generate:
+    post:
+      operationId: generateCareRoutine
+      tags: [care]
+      summary: Generate (or regenerate) a care routine for a garden plant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateCareRoutineBody"
+      responses:
+        "200":
+          description: Generated care routine
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CareRoutine"
+
+  /reminders:
+    get:
+      operationId: listReminders
+      tags: [reminders]
+      summary: List the user's reminders
+      parameters:
+        - in: query
+          name: gardenPlantId
+          schema: { type: integer }
+        - in: query
+          name: upcoming
+          schema: { type: boolean }
+      responses:
+        "200":
+          description: Reminders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Reminder"
+    post:
+      operationId: createReminder
+      tags: [reminders]
+      summary: Create a reminder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReminderBody"
+      responses:
+        "200":
+          description: Created reminder
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reminder"
+
+  /reminders/{reminderId}:
+    patch:
+      operationId: updateReminder
+      tags: [reminders]
+      summary: Update a reminder
+      parameters:
+        - in: path
+          name: reminderId
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateReminderBody"
+      responses:
+        "200":
+          description: Updated reminder
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reminder"
+    delete:
+      operationId: deleteReminder
+      tags: [reminders]
+      summary: Delete a reminder
+      parameters:
+        - in: path
+          name: reminderId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleOk"
+
+  /reminders/{reminderId}/complete:
+    post:
+      operationId: completeReminder
+      tags: [reminders]
+      summary: Mark a reminder as completed
+      parameters:
+        - in: path
+          name: reminderId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Completed reminder
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reminder"
+
+  /soil/{gardenPlantId}:
+    get:
+      operationId: getSoilReading
+      tags: [soil]
+      summary: Get the latest simulated soil reading for a plant
+      parameters:
+        - in: path
+          name: gardenPlantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Latest soil reading
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SoilReading"
+
+  /soil/{gardenPlantId}/history:
+    get:
+      operationId: getSoilHistory
+      tags: [soil]
+      summary: Get the simulated soil history (last 24h, hourly)
+      parameters:
+        - in: path
+          name: gardenPlantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Soil history
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SoilReading"
+
+  /watering:
+    get:
+      operationId: listWateringLogs
+      tags: [watering]
+      summary: List watering logs
+      parameters:
+        - in: query
+          name: gardenPlantId
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Watering logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WateringLog"
+    post:
+      operationId: logWatering
+      tags: [watering]
+      summary: Record a watering event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateWateringLogBody"
+      responses:
+        "200":
+          description: Created log
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WateringLog"
+
+  /watering/report:
+    get:
+      operationId: getWateringReport
+      tags: [watering]
+      summary: Get a 30-day watering report
+      responses:
+        "200":
+          description: Watering report
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WateringReport"
+
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: Dashboard summary for the current user
+      responses:
+        "200":
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /dashboard/activity:
+    get:
+      operationId: getRecentActivity
+      tags: [dashboard]
+      summary: Recent activity feed
+      responses:
+        "200":
+          description: Activity items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
+
+  /admin/users:
+    get:
+      operationId: adminListUsers
+      tags: [admin]
+      summary: Admin — list all users
+      responses:
+        "200":
+          description: Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminUser"
+
+  /admin/users/{userId}:
+    delete:
+      operationId: adminDeleteUser
+      tags: [admin]
+      summary: Admin — delete a user
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleOk"
+
+  /admin/catalog:
+    get:
+      operationId: adminListCatalog
+      tags: [admin]
+      summary: Admin — list catalog plants
+      responses:
+        "200":
+          description: Catalog plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CatalogPlant"
+    post:
+      operationId: adminCreateCatalogPlant
+      tags: [admin]
+      summary: Admin — create a catalog plant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCatalogPlantBody"
+      responses:
+        "200":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogPlant"
+
+  /admin/catalog/{plantId}:
+    patch:
+      operationId: adminUpdateCatalogPlant
+      tags: [admin]
+      summary: Admin — update a catalog plant
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCatalogPlantBody"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CatalogPlant"
+    delete:
+      operationId: adminDeleteCatalogPlant
+      tags: [admin]
+      summary: Admin — delete a catalog plant
+      parameters:
+        - in: path
+          name: plantId
+          required: true
+          schema: { type: integer }
+      responses:
+        "200":
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimpleOk"
+
+  /admin/stats:
+    get:
+      operationId: adminStats
+      tags: [admin]
+      summary: Admin — system stats
+      responses:
+        "200":
+          description: System stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStats"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string }
+
+    SimpleOk:
+      type: object
+      required: [ok]
+      properties:
+        ok: { type: boolean }
+
+    User:
+      type: object
+      required: [id, email, name, region, role, createdAt]
+      properties:
+        id: { type: integer }
+        email: { type: string }
+        name: { type: string }
+        region: { type: string }
+        role: { type: string, enum: [user, admin] }
+        avatarUrl: { type: string, nullable: true }
+        bio: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+
+    CurrentUserResponse:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: "#/components/schemas/User"
+            - type: "null"
+
+    SignupBody:
+      type: object
+      required: [email, password, name, region]
+      properties:
+        email: { type: string }
+        password: { type: string }
+        name: { type: string }
+        region: { type: string }
+
+    LoginBody:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string }
+        password: { type: string }
+
+    AuthResponse:
+      type: object
+      required: [user]
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+
+    UpdateProfileBody:
+      type: object
+      properties:
+        name: { type: string }
+        region: { type: string }
+        bio: { type: string }
+        avatarUrl: { type: string }
+
+    CatalogPlant:
+      type: object
+      required: [id, commonName, scientificName, category, difficulty, imageUrl, summary]
+      properties:
+        id: { type: integer }
+        commonName: { type: string }
+        scientificName: { type: string }
+        category: { type: string }
+        difficulty: { type: string, enum: [easy, medium, hard] }
+        imageUrl: { type: string }
+        summary: { type: string }
+        sunlight: { type: string }
+        waterFrequencyDays: { type: integer }
+        idealTemperatureC: { type: string }
+        soilType: { type: string }
+
+    CatalogPlantDetail:
+      allOf:
+        - $ref: "#/components/schemas/CatalogPlant"
+        - type: object
+          required: [description, articles, videos]
+          properties:
+            description: { type: string }
+            articles:
+              type: array
+              items:
+                $ref: "#/components/schemas/Article"
+            videos:
+              type: array
+              items:
+                $ref: "#/components/schemas/Video"
+
+    Article:
+      type: object
+      required: [title, url, source]
+      properties:
+        title: { type: string }
+        url: { type: string }
+        source: { type: string }
+
+    Video:
+      type: object
+      required: [title, url, thumbnailUrl]
+      properties:
+        title: { type: string }
+        url: { type: string }
+        thumbnailUrl: { type: string }
+        durationSeconds: { type: integer }
+
+    KnowledgeResult:
+      type: object
+      required: [query, plants, articles, videos]
+      properties:
+        query: { type: string }
+        plants:
+          type: array
+          items:
+            $ref: "#/components/schemas/CatalogPlant"
+        articles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Article"
+        videos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Video"
+
+    GardenPlant:
+      type: object
+      required: [id, nickname, location, plantedAt, catalogPlant]
+      properties:
+        id: { type: integer }
+        nickname: { type: string }
+        location: { type: string }
+        plantedAt: { type: string, format: date-time }
+        notes: { type: string, nullable: true }
+        healthStatus: { type: string, enum: [thriving, healthy, watch, struggling] }
+        lastWateredAt: { type: string, format: date-time, nullable: true }
+        catalogPlant:
+          $ref: "#/components/schemas/CatalogPlant"
+
+    GardenPlantDetail:
+      allOf:
+        - $ref: "#/components/schemas/GardenPlant"
+        - type: object
+          properties:
+            careRoutine:
+              oneOf:
+                - $ref: "#/components/schemas/CareRoutine"
+                - type: "null"
+            recentWatering:
+              type: array
+              items:
+                $ref: "#/components/schemas/WateringLog"
+            upcomingReminders:
+              type: array
+              items:
+                $ref: "#/components/schemas/Reminder"
+            latestSoil:
+              oneOf:
+                - $ref: "#/components/schemas/SoilReading"
+                - type: "null"
+
+    AddGardenPlantBody:
+      type: object
+      required: [catalogPlantId, nickname, location]
+      properties:
+        catalogPlantId: { type: integer }
+        nickname: { type: string }
+        location: { type: string }
+        notes: { type: string }
+
+    UpdateGardenPlantBody:
+      type: object
+      properties:
+        nickname: { type: string }
+        location: { type: string }
+        notes: { type: string }
+        healthStatus: { type: string, enum: [thriving, healthy, watch, struggling] }
+
+    CareRoutine:
+      type: object
+      required: [id, gardenPlantId, wateringFrequencyDays, wateringAmountMl, sunlight, soilNotes, fertilizerNotes, generatedAt, tasks]
+      properties:
+        id: { type: integer }
+        gardenPlantId: { type: integer }
+        wateringFrequencyDays: { type: integer }
+        wateringAmountMl: { type: integer }
+        sunlight: { type: string }
+        soilNotes: { type: string }
+        fertilizerNotes: { type: string }
+        generatedAt: { type: string, format: date-time }
+        tasks:
+          type: array
+          items:
+            $ref: "#/components/schemas/CareTask"
+
+    CareTask:
+      type: object
+      required: [title, frequency, description]
+      properties:
+        title: { type: string }
+        frequency: { type: string }
+        description: { type: string }
+
+    GenerateCareRoutineBody:
+      type: object
+      required: [gardenPlantId]
+      properties:
+        gardenPlantId: { type: integer }
+
+    Reminder:
+      type: object
+      required: [id, gardenPlantId, title, type, scheduledAt, completed, repeatDays]
+      properties:
+        id: { type: integer }
+        gardenPlantId: { type: integer }
+        gardenPlantNickname: { type: string }
+        title: { type: string }
+        type: { type: string, enum: [water, fertilize, prune, inspect, other] }
+        scheduledAt: { type: string, format: date-time }
+        completed: { type: boolean }
+        repeatDays: { type: integer }
+        notes: { type: string, nullable: true }
+
+    CreateReminderBody:
+      type: object
+      required: [gardenPlantId, title, type, scheduledAt]
+      properties:
+        gardenPlantId: { type: integer }
+        title: { type: string }
+        type: { type: string, enum: [water, fertilize, prune, inspect, other] }
+        scheduledAt: { type: string, format: date-time }
+        repeatDays: { type: integer }
+        notes: { type: string }
+
+    UpdateReminderBody:
+      type: object
+      properties:
+        title: { type: string }
+        type: { type: string, enum: [water, fertilize, prune, inspect, other] }
+        scheduledAt: { type: string, format: date-time }
+        repeatDays: { type: integer }
+        notes: { type: string }
+        completed: { type: boolean }
+
+    SoilReading:
+      type: object
+      required: [gardenPlantId, recordedAt, ph, temperatureC, humidityPct, moisturePct, status]
+      properties:
+        gardenPlantId: { type: integer }
+        recordedAt: { type: string, format: date-time }
+        ph: { type: number }
+        temperatureC: { type: number }
+        humidityPct: { type: number }
+        moisturePct: { type: number }
+        status: { type: string, enum: [optimal, watch, alert] }
+
+    WateringLog:
+      type: object
+      required: [id, gardenPlantId, gardenPlantNickname, wateredAt, amountMl, source]
+      properties:
+        id: { type: integer }
+        gardenPlantId: { type: integer }
+        gardenPlantNickname: { type: string }
+        wateredAt: { type: string, format: date-time }
+        amountMl: { type: integer }
+        source: { type: string, enum: [manual, reminder, auto] }
+        notes: { type: string, nullable: true }
+
+    CreateWateringLogBody:
+      type: object
+      required: [gardenPlantId, amountMl]
+      properties:
+        gardenPlantId: { type: integer }
+        amountMl: { type: integer }
+        source: { type: string, enum: [manual, reminder, auto] }
+        notes: { type: string }
+
+    WateringReport:
+      type: object
+      required: [totalEvents, totalAmountMl, dailyTotals, perPlant]
+      properties:
+        totalEvents: { type: integer }
+        totalAmountMl: { type: integer }
+        dailyTotals:
+          type: array
+          items:
+            type: object
+            required: [date, amountMl, events]
+            properties:
+              date: { type: string }
+              amountMl: { type: integer }
+              events: { type: integer }
+        perPlant:
+          type: array
+          items:
+            type: object
+            required: [gardenPlantId, nickname, events, amountMl]
+            properties:
+              gardenPlantId: { type: integer }
+              nickname: { type: string }
+              events: { type: integer }
+              amountMl: { type: integer }
+
+    DashboardSummary:
+      type: object
+      required: [totalPlants, healthyPlants, plantsNeedingAttention, dueRemindersToday, overdueReminders, wateredThisWeek, healthBreakdown]
+      properties:
+        totalPlants: { type: integer }
+        healthyPlants: { type: integer }
+        plantsNeedingAttention: { type: integer }
+        dueRemindersToday: { type: integer }
+        overdueReminders: { type: integer }
+        wateredThisWeek: { type: integer }
+        healthBreakdown:
+          type: array
+          items:
+            type: object
+            required: [status, count]
+            properties:
+              status: { type: string }
+              count: { type: integer }
+
+    ActivityItem:
+      type: object
+      required: [id, kind, title, description, occurredAt]
+      properties:
+        id: { type: string }
+        kind: { type: string, enum: [watering, reminder, plant_added, care_generated] }
+        title: { type: string }
+        description: { type: string }
+        occurredAt: { type: string, format: date-time }
+        gardenPlantId: { type: integer, nullable: true }
+
+    AdminUser:
+      type: object
+      required: [id, email, name, region, role, createdAt, plantCount]
+      properties:
+        id: { type: integer }
+        email: { type: string }
+        name: { type: string }
+        region: { type: string }
+        role: { type: string, enum: [user, admin] }
+        createdAt: { type: string, format: date-time }
+        plantCount: { type: integer }
+
+    CreateCatalogPlantBody:
+      type: object
+      required: [commonName, scientificName, category, difficulty, imageUrl, summary, sunlight, waterFrequencyDays, idealTemperatureC, soilType, description]
+      properties:
+        commonName: { type: string }
+        scientificName: { type: string }
+        category: { type: string }
+        difficulty: { type: string, enum: [easy, medium, hard] }
+        imageUrl: { type: string }
+        summary: { type: string }
+        sunlight: { type: string }
+        waterFrequencyDays: { type: integer }
+        idealTemperatureC: { type: string }
+        soilType: { type: string }
+        description: { type: string }
+
+    UpdateCatalogPlantBody:
+      type: object
+      properties:
+        commonName: { type: string }
+        scientificName: { type: string }
+        category: { type: string }
+        difficulty: { type: string, enum: [easy, medium, hard] }
+        imageUrl: { type: string }
+        summary: { type: string }
+        sunlight: { type: string }
+        waterFrequencyDays: { type: integer }
+        idealTemperatureC: { type: string }
+        soilType: { type: string }
+        description: { type: string }
+
+    AdminStats:
+      type: object
+      required: [totalUsers, totalCatalogPlants, totalGardenPlants, totalReminders, totalWateringLogs]
+      properties:
+        totalUsers: { type: integer }
+        totalCatalogPlants: { type: integer }
+        totalGardenPlants: { type: integer }
+        totalReminders: { type: integer }
+        totalWateringLogs: { type: integer }

@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "Yd00mpcl1RHfcIFK-GAy7"
+uri = "file://artifacts/garden-app/public/plants/monstera.png"
+type = "image"
+title = "monstera plant"
+
+[[generated]]
+id = "9ZVxl_4QzjLG3IuwDnF6u"
+uri = "file://artifacts/garden-app/public/plants/snake-plant.png"
+type = "image"
+title = "snake-plant plant"
+
+[[generated]]
+id = "evUlrGoiN2Y4a2gXvV213"
+uri = "file://artifacts/garden-app/public/plants/tomato.png"
+type = "image"
+title = "tomato plant"
+
+[[generated]]
+id = "zpzomHrP3Dq9BjazlgLbj"
+uri = "file://artifacts/garden-app/public/plants/basil.png"
+type = "image"
+title = "basil plant"
+
+[[generated]]
+id = "4eLYtyOmAq2-Bub_4WCmY"
+uri = "file://artifacts/garden-app/public/plants/lavender.png"
+type = "image"
+title = "lavender plant"
+
+[[generated]]
+id = "oYlWaaNHLIRws4WNYi0Nj"
+uri = "file://artifacts/garden-app/public/plants/fiddle-leaf-fig.png"
+type = "image"
+title = "fiddle-leaf-fig plant"
+
+[[generated]]
+id = "AbgOZe_dZoXsfpAXeea1x"
+uri = "file://artifacts/garden-app/public/plants/strawberry.png"
+type = "image"
+title = "strawberry plant"
+
+[[generated]]
+id = "NXDY3MTS8_O5sBn1lNOF3"
+uri = "file://artifacts/garden-app/public/plants/succulent-echeveria.png"
+type = "image"
+title = "succulent-echeveria plant"
+
+[[generated]]
+id = "L5RsokAwVa8zn0GReWUe2"
+uri = "file://artifacts/garden-app/public/plants/rosemary.png"
+type = "image"
+title = "rosemary plant"
+
+[[generated]]
+id = "0pVEjfdFi9ylgTUMBHfDd"
+uri = "file://artifacts/garden-app/public/plants/pothos.png"
+type = "image"
+title = "pothos plant"
